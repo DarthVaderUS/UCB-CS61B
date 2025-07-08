@@ -20,7 +20,8 @@ public class AList {
     /* Inserts X into the back of the list */
     public void addLast(int x){
         if (size == items.length){
-            resize(size + 1);
+            resize(size * 2); /*Improved version : speeding up the adding process
+                                         by doubling the size of the array when it is full*/
         }
         items[size] = x;
         size++;
@@ -48,5 +49,10 @@ public class AList {
         return x;
     }
 
-
+    public static void main(String[] args) {
+        AList L = new AList();
+        for(int i = 0; i < 10000000; i++){
+            L.addLast(i + 1);
+        }
+    }
 }
