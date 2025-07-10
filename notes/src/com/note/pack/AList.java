@@ -1,39 +1,59 @@
 package com.note.pack;
 
-public class AList {
-    private int[] items;
+public class AList<Item> implements List<Item> {
+    private Item[] items;
     private int size;
 
     /*Creates an empty list*/
     public AList(){
-        items = new int[100];
+        items = (Item[]) new Object[100];
         size = 0;
     }
 
     /* Resizes the underlying array to the target capacity. */
     private void resize(int capacity){
-        int[] a = new int[capacity];
+        Item[] a = (Item[]) new Object[capacity];
         System.arraycopy(items, 0, a, 0, size);
         items = a;
     }
 
     /* Inserts X into the back of the list */
-    public void addLast(int x){
+    public void addLast(Item x){
         if (size == items.length){
-            resize(size * 2); /*Improved version : speeding up the adding process
-                                         by doubling the size of the array when it is full*/
+            resize(size * 2);
         }
         items[size] = x;
         size++;
     }
 
+    public void addFirst(Item x) {
+        if (size == items.length) {
+            resize(size * 2);
+        }
+        System.arraycopy(items, 0, items, 1, size);
+        items[0] = x;
+        size++;
+    }
+
+    public void insert(Item x, int position) {
+        if (position < 0 || position > size) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (size == items.length) {
+            resize(size * 2);
+        }
+        System.arraycopy(items, position, items, position + 1, size - position);
+        items[position] = x;
+        size++;
+    }
+
     /* Returns the item from the back of the list. */
-    public int getLast(){
+    public Item getLast(){
         return items[size - 1];
     }
 
     /*Get the ith item in the list, */
-    public int get(int i){
+    public Item get(int i){
         return items[i];
     }
 
@@ -41,16 +61,42 @@ public class AList {
         return size;
     }
 
+    public Item getFirst() {
+        if (size == 0) return null;
+        return items[0];
+    }
+
+    public Item removeFirst() {
+        if (size == 0) return null;
+        Item x = items[0];
+        System.arraycopy(items, 1, items, 0, size - 1);
+        items[size - 1] = null;
+        size--;
+        return x;
+    }
+
+    public Item remove(int position) {
+        if (position < 0 || position >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        Item x = items[position];
+        System.arraycopy(items, position + 1, items, position, size - position - 1);
+        items[size - 1] = null;
+        size--;
+        return x;
+    }
+
     /* Removes the item from the back of the list and returns it. */
-    public int removeLast(){
-        int x = getLast();
-        items[size - -1] = 0;
+    public Item removeLast(){
+        if (size == 0) return null;
+        Item x = getLast();
+        items[size - 1] = null;
         size -= 1;
         return x;
     }
 
     public static void main(String[] args) {
-        AList L = new AList();
+        AList<Integer> L = new AList<>();
         for(int i = 0; i < 10000000; i++){
             L.addLast(i + 1);
         }
