@@ -136,6 +136,19 @@ public class SLList<Pineapple> implements List<Pineapple> {
 //
 //    }
 
+    /* Much faster than the default method which inherits from List
+    * Because the default method calls get() method every time in the loop, that's pretty slow!!!
+    * */
+    @Override
+    public void print() {
+        IntNode p = sentinel.next;
+        while(p != null) {
+            System.out.print(p.item + " ");
+            p = p.next;
+        }
+        System.out.println();
+    }
+
     public static void main(String[] args) {
         SLList<Integer> L = new SLList<>();
         L.addFirst(1);
