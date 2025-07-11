@@ -1,8 +1,7 @@
 package deque;
 
-import java.lang.reflect.GenericDeclaration;
 
-public class LinkedListDeque<T> {
+public class LinkedListDeque<T> implements Deque<T> {
     private int size;
 
     private static class Node<T> {
@@ -89,9 +88,9 @@ public class LinkedListDeque<T> {
         size++;
     }
 
-    public boolean isEmpty() {
-        return size == 0;
-    }
+//    public boolean isEmpty() {
+//        return size == 0;
+//    }
 
     public int size() {
         return size;
