@@ -53,6 +53,17 @@ public class ArraySet<T> implements Iterable<T> {  /*Add 'implements Iterable<T>
         return new ArraySetIterator<>();
     }
 
+    @Override
+    public String toString() {
+        String x = "(";
+        for(T i : this) {
+            x+=i.toString();
+            x+=" ";
+        }
+        x+=")";
+        return x;
+    }
+
     public static void main(String[] args) {
         ArraySet<Integer> aset = new ArraySet<>();
         aset.add(5);
@@ -70,6 +81,8 @@ public class ArraySet<T> implements Iterable<T> {  /*Add 'implements Iterable<T>
         for(int i : aset) {
             System.out.println(i);
         }
+
+        System.out.println(aset); //Prints the set using the overridden toString method
     }
 
 
