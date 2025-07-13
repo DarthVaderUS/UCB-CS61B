@@ -64,6 +64,22 @@ public class ArraySet<T> implements Iterable<T> {  /*Add 'implements Iterable<T>
         return x;
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(o instanceof ArraySet otherArraySet) {  /*Check if the object is an instance of ArraySet
+                                                     if true, name it otherArraySet */
+            if(this.size != otherArraySet.size)
+                return false;
+            for( T i : this) {
+                if(!otherArraySet.contains(i)) {
+                    return false;
+                }
+            }
+
+        }
+        return true;
+}
+
     public static void main(String[] args) {
         ArraySet<Integer> aset = new ArraySet<>();
         aset.add(5);
