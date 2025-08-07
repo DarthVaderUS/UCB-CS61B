@@ -2,7 +2,7 @@ package com.note.pack6.Graph;
 
 import java.util.*;
 
-public class EdgeWeightedDigraph {
+public class EdgeWeightedDigraph {    // Edge-weighted directed graph class
     private final int V;
     private int E;
     private List<DirectedEdge>[] adj;

@@ -3,9 +3,9 @@ package com.note.pack6.Graph;
 import java.util.*;
 
 public class Graph {
-    private final int V;
-    private int E;
-    private List<Integer>[] adj;
+    private final int V; // Num of vertices
+    private int E;   // Num of total edges
+    private List<Integer>[] adj;  // Adjacency list
 
     @SuppressWarnings("unchecked")
     public Graph(int V) {
@@ -19,10 +19,14 @@ public class Graph {
 
     public void addEdge(int v, int w) {
         adj[v].add(w);
-        adj[w].add(v); // 无向图
+        adj[w].add(v); // Undirected graph
         E++;
     }
 
+    /** Get all adjacent vertices of vertex v in List
+     * @param v vertex
+     * @return all adjacent vertices of vertex v
+     */
     public Iterable<Integer> adj(int v) {
         return adj[v];
     }

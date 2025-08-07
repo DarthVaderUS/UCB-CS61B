@@ -24,10 +24,12 @@ public class DepthFirstOrder {
             int w = e.to();
             if (hasCycle) return;
             if (!marked[w]) dfs(G, w);
-            else if (onStack[w]) hasCycle = true;
+            else if (onStack[w]) hasCycle = true;   // Use onStack to detect cycle,
+                                                    // with the runtime of O(1)
         }
         onStack[v] = false;
-        reversePost.push(v);
+        reversePost.push(v);  // Add to reverse postorder stack in order to
+                              // get the topological order
     }
 
     public Iterable<Integer> reversePost() {
