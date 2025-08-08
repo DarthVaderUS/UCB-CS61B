@@ -5,6 +5,8 @@ package com.note.pack7.Sort;
  * This algorithm sorts an array by building a max heap and then repeatedly
  * extracting the maximum element from the heap,
  * with the time complexity of O(n log n) and space complexity of O(1).
+ * * Attention: Heap sort is not a stable sort, meaning that it does not maintain the relative order of equal elements.
+ * * And it has bad cache performance, which means it's not good for your CPU cache.
  */
 public class HeapSort {
     public static void heapSort(int[] arr) {
