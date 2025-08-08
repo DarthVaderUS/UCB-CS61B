@@ -1,5 +1,11 @@
 package com.note.pack7.Sort;
 
+/**
+ * Heap Sort implementation in Java.
+ * This algorithm sorts an array by building a max heap and then repeatedly
+ * extracting the maximum element from the heap,
+ * with the time complexity of O(n log n) and space complexity of O(1).
+ */
 public class HeapSort {
     public static void heapSort(int[] arr) {
         int n = arr.length;

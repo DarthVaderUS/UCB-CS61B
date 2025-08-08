@@ -4,7 +4,7 @@ package com.note.pack7.Sort;
  * Selection Sort implementation in Java.
  * This algorithm sorts an array by repeatedly finding the minimum element
  * from the unsorted part and moving it to the beginning,
- * with the time complexity of O(n^2).
+ * with the time complexity of O(n^2) and space complexity of O(1).
  */
 public class SelectionSort {
     public static void selectionSort(int[] arr) {
