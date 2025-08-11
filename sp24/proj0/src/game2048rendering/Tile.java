@@ -21,7 +21,7 @@ public class Tile {
         return _merged;
     }
 
-    void setMerged(boolean merged) {
+    public void setMerged(boolean merged) {
         this._merged = merged;
     }
 
