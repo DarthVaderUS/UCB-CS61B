@@ -1,4 +1,3 @@
-import java.lang.Math;
 import java.util.List;
 
 /**A circular array deque implementation.
