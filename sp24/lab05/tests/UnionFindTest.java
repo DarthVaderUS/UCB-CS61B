@@ -86,6 +86,17 @@ public class UnionFindTest {
      * of all methods in your implementation.
      */
 
+    @Test
+    public void constructorEdgeTest() {
+        try {
+            new UnionFind(0);
+            fail("Should throw for N=0");
+        } catch (IllegalArgumentException ignored) {}
+        try {
+            new UnionFind(-5);
+            fail("Should throw for negative N");
+        } catch (IllegalArgumentException ignored) {}
+    }
 }
 
 
