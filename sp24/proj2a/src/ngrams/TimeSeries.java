@@ -1,5 +1,6 @@
 package ngrams;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -31,6 +32,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
     public TimeSeries(TimeSeries ts, int startYear, int endYear) {
         super();
         // TODO: Fill in this constructor.
+        for(int year = startYear; year <= endYear; year++) {
+            if (ts.containsKey(year)) {
+                this.put(year, ts.get(year));
+            }
+        }
     }
 
     /**
@@ -38,7 +44,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Integer> years() {
         // TODO: Fill in this method.
-        return null;
+        List<Integer> yearList = new ArrayList<>();
+        for(Integer year : this.keySet()) {
+            yearList.add(year);
+        }
+        return yearList;
     }
 
     /**
@@ -47,7 +57,11 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public List<Double> data() {
         // TODO: Fill in this method.
-        return null;
+        List<Double> dataList = new ArrayList<>();
+        for(Integer year : this.keySet()) {
+            dataList.add(this.get(year));
+        }
+        return dataList;
     }
 
     /**
@@ -61,7 +75,20 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries plus(TimeSeries ts) {
         // TODO: Fill in this method.
-        return null;
+        TimeSeries result = new TimeSeries();
+        for(Integer year : this.keySet()) {
+            double value = this.get(year);
+            if(ts.containsKey(year)) {
+                value += ts.get(year);
+            }
+            result.put(year, value);
+        }
+        for(Integer year : ts.keySet()) {
+            if(!this.containsKey(year)) {
+                result.put(year, ts.get(year));
+            }
+        }
+        return result;
     }
 
     /**
@@ -75,7 +102,19 @@ public class TimeSeries extends TreeMap<Integer, Double> {
      */
     public TimeSeries dividedBy(TimeSeries ts) {
         // TODO: Fill in this method.
-        return null;
+        TimeSeries result = new TimeSeries();
+        for(Integer year : this.keySet()) {
+            if(!ts.containsKey(year)) {
+                throw new IllegalArgumentException("Year " + year + " not found in the provided TimeSeries.");
+            }
+            double value = this.get(year);
+            double divisor = ts.get(year);
+            if (divisor == 0) {
+                throw new IllegalArgumentException("Division by zero for year " + year);
+            }
+            result.put(year, value / divisor);
+        }
+        return result;
     }
 
     // TODO: Add any private helper methods.
